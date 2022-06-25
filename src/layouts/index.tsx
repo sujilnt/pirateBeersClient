@@ -11,7 +11,7 @@ function Layout(props:any) {
          <div className={styles.headerContainer}>
            <Navbar/>
          </div>
-        <div>{props.children}</div>
+        <div className={styles.content}>{props.children}</div>
           <Footer/>
       </div>
   );

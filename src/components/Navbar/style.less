@@ -1,0 +1,137 @@
+.logo{
+  width: 90px;
+  min-width: 83px;
+  margin: 4px 23px 4px 17px;
+}
+
+
+
+.header{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.menuContainer {
+  width: 100%;
+  display: flex;
+  border: 1px solid @primary-bg-color;
+}
+
+.navIcon{
+  font-size: 25px;
+}
+
+
+.rightHeaderContainer{
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 98%;
+  flex-wrap: wrap;
+}
+
+
+.userAndCartContainer{
+  display: flex;
+  justify-content: center;
+
+  & .headerIconContainer{
+    display: flex;
+    flex-direction: column;
+    width: 72px;
+    text-align: center;
+  }
+
+  & .headerIconContainer:last-child{
+    width: 120px;
+  }
+
+  & .headerIcon{
+    color: white;
+    font-size: 32px;
+  }
+}
+
+.searchBox{
+  width: 98%;
+  margin: 12px 0px 21px 0px;
+}
+
+.menuIcon{
+  color: white;
+  margin-left: 10px;
+
+  & .headerIcon{
+    font-size:30px;
+  }
+}
+
+.leftHeaderContainer{
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.menu{
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 630px) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .header{
+    flex-direction: row;
+  }
+
+  .rightHeaderContainer{
+    width: 79%;
+  }
+
+  .searchBox{
+    width: 44%;
+  }
+
+  .menu{
+    margin-top:0;
+  }
+
+}
+
+// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .header{
+    width: 80%;
+    justify-content: center
+  }
+
+  .menuContainer{
+    width: 89%;
+  }
+
+  .searchBox{
+    width: 60%;
+  }
+
+  .userAndCartContainer{
+    width: 40%;
+  }
+
+}
+
+
+
+

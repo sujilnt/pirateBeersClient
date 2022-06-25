@@ -3,6 +3,7 @@ import React from 'react';
 interface LayoutProps{
   className :string;
 }
+
 export default function({className}:LayoutProps) {
   return (
     <div className={className}>

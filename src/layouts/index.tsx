@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 import styles from "./style.less";
 
 function Layout(props:any) {
@@ -10,6 +12,7 @@ function Layout(props:any) {
            <Navbar/>
          </div>
         <div>{props.children}</div>
+          <Footer/>
       </div>
   );
 }

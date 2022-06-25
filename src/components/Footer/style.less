@@ -1,0 +1,80 @@
+.footerContainer{
+  background: @primary-bg-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainFooter {
+  background: @primary-bg-color;
+  opacity: 0.8;
+  display: flex;
+  flex: 100%;
+  color: white;
+  flex-wrap: wrap;
+
+  & .column{
+    flex: 50%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    min-width: 250px;
+  }
+
+
+  & .column:first-child{
+    order: 3;
+    flex: 1 1 100%;
+  }
+}
+
+
+.emailForm{
+  width: 80%;
+}
+.emailSubmitButton{
+  width:100%;
+  margin: 20px 0;
+}
+
+.columnHeading{
+  color: white;
+}
+
+.footerMenu{
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  color: white;
+}
+
+.footerLogo{
+  width: 100px;
+}
+
+.subFooter{
+  color: white;
+  padding: 20PX;
+  background: #032b50;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+
+  .mainFooter {
+    flex-wrap: unset;
+    width: 80%;
+
+    & .column{
+      flex: 100%;
+    }
+
+    & .column:first-child{
+      order:0;
+    }
+  }
+}

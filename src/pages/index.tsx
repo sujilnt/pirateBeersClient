@@ -1,9 +1,16 @@
 import styles from './index.less';
+import HomePageBanners from "@/components/HomePageBanners";
 
-export default function IndexPage() {
+export default function Index() {
   return (
-    <div>
-      <h1 className={styles.title}>Page index</h1>
+    <div className={styles.container}>
+      <HomePageBanners/>
+      <div>
+        <h1>Beer Categories</h1>
+      </div>
+
+
     </div>
+
   );
 }

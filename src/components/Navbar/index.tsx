@@ -11,7 +11,7 @@ import Icon, {
 } from '@ant-design/icons';
 
 import BeerIcon from "@/components/icons/beerIcon";
-import Logo from "@/components/assets/logo";
+import Logo from "@/components/assets/Logo";
 import styles from "./style.less";
 
 

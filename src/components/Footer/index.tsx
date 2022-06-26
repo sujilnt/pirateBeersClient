@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./style.less";
 import Icon from "@ant-design/icons";
 import SkullIcon from "@/components/assets/SkullIcon";
-import Logo from "@/components/assets/logo";
+import Logo from "@/components/assets/Logo";
 import {Input,Button} from "antd";
 import {Link} from "umi";
 

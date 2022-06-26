@@ -1,0 +1,52 @@
+.bannerContainer,
+.tinyBanners{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+
+
+  .bannerContainer{
+    width: 100%;
+  }
+
+  & .column{
+    width: 69%;
+    margin-top: 3px;
+    flex: 1 60%;
+  }
+
+  & .column,
+  & .splitColumn{
+    background: red;
+    border: 1px solid black;
+    height: 476px;
+    overflow: hidden;
+  }
+}
+
+.tinyBanners {
+  flex-direction: column;
+  flex: 1 30%;
+  min-width: 289px;
+
+
+  & .splitColumn {
+    height: 236px;
+    border: 1px solid black;
+    margin-top: 3px;
+  }
+}
+
+.image{
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: fill;
+
+}
+@media (min-width: 1250px) {
+  .bannerContainer{
+    width: 70%;
+  }
+}

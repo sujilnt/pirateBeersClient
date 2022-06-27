@@ -1,11 +1,12 @@
 import { defineConfig } from 'umi';
 import theme from "./src/themes/theme";
 
+console.log("process", process.env);
+
 export default defineConfig({
-  nodeModulesTransform: {
-    type: 'none',
+  define:{
+    API_URL: process.env.API_URL || "http://localhost:8000",
   },
-  fastRefresh: {},
   dva: {
     immer: true, // Enable dva-immer for elegant reducer writing experience
   },

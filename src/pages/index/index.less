@@ -1,0 +1,35 @@
+.title {
+  background: rgb(121, 242, 157);
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoryContent{
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
+  grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.category{
+  width: 100%;
+}
+
+
+@media (min-width: 1250px) {
+  .category{
+    width:70%;
+    margin: 40px 2px;
+
+    & .categoryContent{
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+    }
+  }
+}

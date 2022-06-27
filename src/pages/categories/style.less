@@ -1,0 +1,114 @@
+.categoryContainer{
+  display: flex;
+  justify-content:center;
+  flex-direction: column;
+}
+
+.categoryInformationContainer,
+.categoryInformation{
+  background: black;
+}
+
+.spinner{
+  margin-top: 55px;
+}
+.categoryInformation{
+  width:100%;
+  align-items:center;
+  padding: 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.descriptionContainer{
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  flex-direction: column;
+  padding: 24px;
+  flex: 2 1 500px;
+
+
+
+  & h2, & h1 {
+    color: white;
+    font-weight: 100;
+    font-size: 17px;
+    //font-size: 20px;
+  }
+  & h1{
+     font-size: 21px;
+    //font-size: 24px;
+  }
+
+  & h3{
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+    color: #c9c4ae;
+  }
+}
+
+.responsiveImage{
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  max-width: 400px;
+}
+
+.srmSlider{
+  & :global(.ant-slider-handle){
+    border-radius: unset;
+  }
+
+  & :global(.ant-slider-track){
+    height: 8px;
+    // library uses !important because when disabled mode in slider
+    background: transparent !important;
+  }
+
+  & :global(.ant-slider-rail){
+    // library uses !important because when disabled mode in slider
+    background: linear-gradient(to right, #ffe699 0%, #962d00 47%, #36080a 100%) !important;
+  }
+}
+
+.ibuAndAbvSlider{
+  & :global(.ant-slider-handle){
+    border-radius: unset;
+  }
+
+  & :global(.ant-slider-track){
+    height: 8px;
+    background: transparent !important;
+  }
+
+  & :global(.ant-slider-rail){
+    background: linear-gradient(to right, #ffffff 0%, #909922 100%)
+  }
+
+  &:last-child :global(.ant-slider-rail){
+    background: linear-gradient(to right, #e7e4c1 0%, #d1bf51 100%)
+  }
+}
+
+.sliderContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  margin-bottom: 10px;
+}
+
+
+
+@media (min-width: 1240px){
+  .categoryInformationContainer{
+    display: flex;
+    justify-content: center;
+  }
+
+  .categoryInformation{
+    width: 80%;
+  }
+
+}

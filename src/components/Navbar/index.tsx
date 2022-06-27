@@ -17,7 +17,7 @@ import styles from "./style.less";
 
 const {Search} = Input;
 
-function getLink(to: string, label: string): ReactNode {
+export function getLink(to: string, label: string): ReactNode {
   return (
     <Link to={to} className={styles.activeNavbar}>{label}</Link>
   )

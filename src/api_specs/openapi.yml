@@ -1,0 +1,146 @@
+openapi: "3.0.0"
+info:
+  title: Pirate Beers
+  description: A ecommerce app that sells beers
+  version: 1.0.0
+paths:
+  /products/categories/{id}:
+     get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: unique id of the  product category
+      tags:
+        - products
+      summary: Get category information of a particular category
+      description: Get category information of a particular category
+      operationId: getCategoryById
+      responses:
+        200:
+          description: get Category by id
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+  /products/categories:
+    get:
+      tags:
+        - products
+      summary: Gets all product categories
+      description: Gets all product categories
+      operationId: getAllProductCategories
+      responses:
+        200:
+          description: Gets all product categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+  /products:
+    get:
+      tags:
+        - products
+      summary: Gets all products
+      description: Gets all products
+      operationId: getAllProducts
+      responses:
+        200:
+          description: Gets all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+components:
+  schemas:
+    Product:
+      type: object
+      description: A model for products
+      required:
+        - id
+        - title
+        - description
+        - image
+        - price
+        - rating
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        image:
+          type: string
+        rating:
+          type: number
+        abv:
+          type: number
+        ibu:
+          type: number
+        srm:
+          type: number
+        price:
+          type: number
+        listed_since:
+          type: number
+        type:
+          type: number
+        tags:
+          type: array
+          items:
+            type: string
+    Range:
+      type: object
+      description: A model of identify the min and max values
+      required:
+        - min
+        - max
+      properties:
+        min:
+          type: number
+        max:
+          type: number
+    Category:
+      type: object
+      description: A model of category data data
+      required:
+        - id
+        - title
+        - url
+        - description
+        - image
+        - abv
+        - ibu
+        - srm
+        - servingTemperature
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        image:
+          type: string
+        abv:
+          $ref: "#/components/schemas/Range"
+        ibu:
+          $ref: "#/components/schemas/Range"
+        srm:
+          $ref: "#/components/schemas/Range"
+        servingTemperature:
+          $ref: "#/components/schemas/Range"
+

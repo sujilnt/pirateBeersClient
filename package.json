@@ -6,7 +6,10 @@
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "remove_api_folder": "node -e require('rimraf').sync('src/api')",
+    "api_generator": "yarn openapi-generator-cli generate -i src/api_specs/openapi.yml -o src/api -g typescript-fetch --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true",
+    "generateApi": "yarn run remove_api_folder && yarn run api-generator"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -21,6 +24,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+    "@openapitools/openapi-generator-cli": "^2.4.26",
     "react": "17.x",
     "react-dom": "17.x",
     "umi": "^3.5.26"

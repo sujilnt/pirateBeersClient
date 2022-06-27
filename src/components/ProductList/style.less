@@ -1,0 +1,21 @@
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: darkred;
+}
+
+.cardImage{
+  max-width: 100%;
+}
+
+.card{
+  width: 300px;
+  margin: 10px 5px;
+
+  & :global(.ant-card-body){
+    padding: 10px 18px;
+  }
+}

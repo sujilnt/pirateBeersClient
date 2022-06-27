@@ -9,6 +9,7 @@ import styles from "./style.less";
 import {ProductAction} from "@/pages/product/model";
 import Products from "../../../mock/products";
 import {Product} from "@/api";
+import ProductList from "@/components/ProductList";
 
 interface BeerCategoryProps extends CategoryState{
   isFetchingCategories: boolean;
@@ -93,10 +94,10 @@ function getDispatchMethods(dispatch: Dispatch) {
 
 function BeerCategory() {
   const {onMount, cleanUp} = getDispatchMethods(useDispatch());
-  const { category, isFetchingCategories}: BeerCategoryProps = useSelector((state: GlobalState) => ({
+  const { category, isFetchingCategories, products}: BeerCategoryProps = useSelector((state: GlobalState) => ({
     ...state.productCategory,
     isFetchingCategories: state.loading.effects[`productCategory/${CategoryAction.FETCH_PRODUCT_CATEGORY}`],
-    products: state.products.products?.filter((product:Product)=>product.id===  window.location.pathname.split("/categories/")[1]) || undefined
+    products: state.products.products?.filter((product:Product)=>product.category?.toLowerCase() ===  window.location.pathname.split("/categories/")[1]) || undefined
   }));
 
   useEffect(() => {
@@ -171,10 +172,10 @@ function BeerCategory() {
         ) : <Empty/>}
       </Spin>
       <div className={styles.productContainer}>
-        <h1>Products</h1>
-        <div>
-
-        </div>
+          { !!products && products?.length
+            ? <ProductList products={products} />
+            : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          }
       </div>
     </div>
   );

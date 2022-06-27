@@ -11,7 +11,7 @@ const products:Product[] = productData.map((product)=>{
     title: product.displayName,
     description: product.product_description,
     category: product.product_category,
-    image: product.image_medium,
+    image: product.contentAwareMedium,
     rating: 4,
     price: product.product_price,
     listedSince: product.listed_since,

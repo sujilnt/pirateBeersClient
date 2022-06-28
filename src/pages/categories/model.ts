@@ -1,8 +1,9 @@
 import { notification } from "antd";
 import {Category} from "@/api";
 import type {Put} from "redux-saga/effects";
-import api from "@/services/api";
-import {GlobalState} from "@/interfaces";
+import api from "@/service/api";
+import {GlobalState} from "@/service/interfaces";
+import {Model} from "dva";
 
 export enum CategoryAction {
   FETCH_PRODUCT_CATEGORY = "FETCH_PRODUCT_CATEGORY",
@@ -50,7 +51,7 @@ export default {
         }
       } catch (e) {
         notification.error({
-          message: 'could not fetch category information',
+          message: 'Could not fetch category information',
         })
       }
     },
@@ -66,9 +67,9 @@ export default {
         }
       } catch (e) {
         notification.error({
-          message: 'could not fetch all categories',
+          message: 'Could not fetch category information',
         });
       }
     }
   }
-}
+} as unknown as Model

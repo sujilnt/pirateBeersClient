@@ -3,7 +3,7 @@ import HomePageBanners from "@/components/HomePageBanners";
 import CategoryCard from "@/components/CaterogyCard";
 import {useDispatch, useSelector, Dispatch} from 'umi';
 import {CategoryAction} from "@/pages/categories/model";
-import {GlobalState} from "@/interfaces";
+import {GlobalState} from "@/service/interfaces";
 import {useEffect} from "react";
 import {Category} from "@/api";
 import {Spin} from "antd";

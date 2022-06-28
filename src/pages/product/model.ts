@@ -1,6 +1,6 @@
 import type {Put} from "redux-saga/effects";
 import {Product} from "@/api";
-import api from "@/services/api";
+import api from "@/service/api";
 import {notification} from "antd";
 
 export enum ProductAction {

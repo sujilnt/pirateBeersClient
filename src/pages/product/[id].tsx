@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Dispatch, useDispatch, useSelector} from "umi";
-import {GlobalState} from "@/interfaces";
+import {GlobalState} from "@/service/interfaces";
 import {ProductAction} from "@/pages/product/model";
 
 

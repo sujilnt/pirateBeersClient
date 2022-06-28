@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useSelector, useDispatch, Dispatch} from "umi";
 import {Spin, Slider, Tooltip, Empty} from "antd";
-import {GlobalState} from "@/interfaces";
+import {GlobalState} from "@/service/interfaces";
 import {QuestionCircleOutlined} from "@ant-design/icons";
 
 import {CategoryAction, CategoryState} from "@/pages/categories/model";

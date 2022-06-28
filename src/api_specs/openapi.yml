@@ -59,6 +59,28 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Product"
+
+  /products/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: unique id of the  product category
+      tags:
+        - products
+      summary: Gets the product information based on the id
+      description: Gets the product information
+      operationId: getProductById
+      responses:
+        200:
+          description: Gets the product information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
 components:
   schemas:
     Product:

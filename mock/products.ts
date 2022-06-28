@@ -3,8 +3,6 @@ import {Category, Product} from "@/api";
 import productData from "./dummyData.ts";
 
 
-
-
 const products:Product[] = productData.map((product)=>{
   return{
     id: product.id,
@@ -115,8 +113,15 @@ export default {
     }, 1000);
   },
 
+  'GET /products/:id': (request: Request, response: Response) => {
+    const id = request.url.split("/products/")[1];
+    setTimeout(()=>{
+      response.send(products.find((product)=> {
+        return product.id === id;
+      }));
+    },1000);
+  },
   'GET /products': (request: Request, response: Response) => {
-    console.log("called products");
     setTimeout(()=>{
       response.send(products);
     },1000);

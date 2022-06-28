@@ -49,7 +49,6 @@ export default {
           });
         }
       } catch (e) {
-        console.log("e",e);
         notification.error({
           message: 'could not fetch category information',
         })

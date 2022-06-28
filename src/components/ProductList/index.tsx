@@ -3,36 +3,34 @@ import {Card, Empty, Rate} from "antd";
 import {SettingOutlined,EditOutlined,EllipsisOutlined} from "@ant-design/icons";
 import type {Product} from "@/api";
 import styles from "./style.less";
-
-
-const { Meta } = Card;
+import {history} from "umi";
 
 interface ProductListProps{
   products: Product[];
 }
 
-export default function({products}: ProductListProps){
+const onClick =(e: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string)=>{
+  e.preventDefault();
+  history.push(`/product/${id}`)
+};
 
+export default function({products}: ProductListProps){
   return(
-    <div className={styles.container}>
+    <div className={styles.container} >
       {products?.map((product)=>{
         return (
-          <Card
-            hoverable
+          <div
             className={styles.card}
-            cover={
-              <img
-                alt={product.title}
-                src={product.image}
-                className={styles.cardImage}
-              />
-            }
+            onClick={(e)=>onClick(e, product.id)}
           >
-            <div>
+            <div className={styles.cardImageContainer}>
+              <img src={product.image} className={styles.cardImage}/>
+            </div>
+            <div className={styles.cardLabel}>
+              <div className={styles.title}>{product.title}</div>
               <Rate disabled defaultValue={product.rating} />
             </div>
-            {product.title}
-          </Card>
+          </div>
         )
       })}
     </div>

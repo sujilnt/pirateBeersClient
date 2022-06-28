@@ -29,7 +29,7 @@ const routes = [
     key: "products", label: getLink("/product", "Products"),
     icon: <Icon component={BeerIcon}/>,
     children: [
-      {key: "newCollection", label: getLink("/products/newCollection", "Beers")},
+      {key: "newCollection", label: getLink("/product/detailed", "Detailed Category")},
     ]
   },
   {key: "about-us", label: getLink("/about-us", "About us"), icon: <UsergroupAddOutlined className={styles.navIcon}/>}

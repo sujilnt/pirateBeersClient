@@ -81,10 +81,10 @@ export interface Product {
     price: number;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof Product
      */
-    listedSince?: number;
+    listedSince?: Date;
     /**
      * 
      * @type {number}
@@ -119,7 +119,7 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'ibu': !exists(json, 'ibu') ? undefined : json['ibu'],
         'srm': !exists(json, 'srm') ? undefined : json['srm'],
         'price': json['price'],
-        'listedSince': !exists(json, 'listed_since') ? undefined : json['listed_since'],
+        'listedSince': !exists(json, 'listed_since') ? undefined : (new Date(json['listed_since'])),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
     };
@@ -144,7 +144,7 @@ export function ProductToJSON(value?: Product | null): any {
         'ibu': value.ibu,
         'srm': value.srm,
         'price': value.price,
-        'listed_since': value.listedSince,
+        'listed_since': value.listedSince === undefined ? undefined : (value.listedSince.toISOString()),
         'type': value.type,
         'tags': value.tags,
     };

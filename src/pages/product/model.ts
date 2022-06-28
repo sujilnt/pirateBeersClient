@@ -2,22 +2,24 @@ import type {Put} from "redux-saga/effects";
 import {Product} from "@/api";
 import api from "@/service/api";
 import {notification} from "antd";
+import {Model} from "dva";
+import {Key} from "react";
+import { GlobalState } from "@/service/interfaces";
 
 export enum ProductAction {
   FETCH_PRODUCTS = "FETCH_PRODUCTS",
   SET_PRODUCTS = "SET_PRODUCTS",
-  //For single products
-  FETCH_SELECTED_PRODUCT_INFO = "FETCH_SELECTED_PRODUCT_INFO",
-  SET_SELECTED_PRODUCT_INFO = "SET_SELECTED_PRODUCT_INFO"
+  SET_SELECTED_PRODUCTS = "SET_SELECTED_PRODUCTS",
+  DELETE_PRODUCTS = "DELETE_PRODUCTS"
 }
 export interface ProductState{
  products?: Product[];
-  selectedProduct: Product
+  selectedProducts: Key[]
 }
 
 const initialState ={
   products: undefined,
-  selectedProduct: undefined
+  selectedProducts: undefined
 };
 
 export default {
@@ -27,8 +29,8 @@ export default {
     [ProductAction.SET_PRODUCTS](state: ProductState, {products}:{ products :Product[]}){
       state.products = products;
     },
-    [ProductAction.SET_SELECTED_PRODUCT_INFO](state: ProductState, {selectedProduct}:{ selectedProduct :Product}){
-      state.selectedProduct = selectedProduct;
+    [ProductAction.SET_SELECTED_PRODUCTS](state: ProductState, {selectedProducts}:{ selectedProducts :string[]}){
+      state.selectedProducts = selectedProducts;
     }
   },
   effects: {
@@ -45,19 +47,22 @@ export default {
         });
       }
     },
-    *[ProductAction.FETCH_SELECTED_PRODUCT_INFO]({id}:{id:string}, {call, put}:{call:Function, put:Put}){
+    *[ProductAction.DELETE_PRODUCTS](_payload:any,{put, call, select}:{put:Put,call:Function, select:Function}){
+      const ids:Key[] = yield select((state: GlobalState)=> state.products.selectedProducts);
       try{
-        const product:Product = yield call (()=>api.products.getProductById({id}));
-        yield put.resolve({
-          type: ProductAction.SET_SELECTED_PRODUCT_INFO,
-          selectedProduct: product
-        })
-      }catch (e) {
-        console.error(e);
-        notification.error({
-          message: 'could not fetch  products information',
+        yield call(()=> api.products.deleteProductsByIds({
+          ids: ids as string[]
+        }));
+
+        yield put({
+          type: ProductAction.FETCH_PRODUCTS
         });
+
+      }catch (e) {
+        notification.error({
+          message: "could not delete the products"
+        })
       }
     }
   }
-}
+} as unknown as Model;

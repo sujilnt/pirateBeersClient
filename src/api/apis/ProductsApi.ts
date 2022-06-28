@@ -23,11 +23,11 @@ import {
     ProductToJSON,
 } from '../models';
 
-export interface GetCategoryByIdRequest {
-    id: string;
+export interface DeleteProductsByIdsRequest {
+    ids: Array<string>;
 }
 
-export interface GetProductByIdRequest {
+export interface GetCategoryByIdRequest {
     id: string;
 }
 
@@ -35,6 +35,41 @@ export interface GetProductByIdRequest {
  * 
  */
 export class ProductsApi extends runtime.BaseAPI {
+
+    /**
+     * Deleting products based on product Ids
+     * Deleting products based on product Ids
+     */
+    async deleteProductsByIdsRaw(requestParameters: DeleteProductsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.ids === null || requestParameters.ids === undefined) {
+            throw new runtime.RequiredError('ids','Required parameter requestParameters.ids was null or undefined when calling deleteProductsByIds.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/products`,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Deleting products based on product Ids
+     * Deleting products based on product Ids
+     */
+    async deleteProductsByIds(requestParameters: DeleteProductsByIdsRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<void> {
+        await this.deleteProductsByIdsRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Gets all product categories
@@ -121,38 +156,6 @@ export class ProductsApi extends runtime.BaseAPI {
      */
     async getCategoryById(requestParameters: GetCategoryByIdRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Category>> {
         const response = await this.getCategoryByIdRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Gets the product information
-     * Gets the product information based on the id
-     */
-    async getProductByIdRaw(requestParameters: GetProductByIdRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Product>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getProductById.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/products/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductFromJSON(jsonValue));
-    }
-
-    /**
-     * Gets the product information
-     * Gets the product information based on the id
-     */
-    async getProductById(requestParameters: GetProductByIdRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Product> {
-        const response = await this.getProductByIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

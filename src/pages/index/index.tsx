@@ -27,7 +27,7 @@ function Index(){
     <div className={styles.container}>
       <HomePageBanners/>
       <div className={styles.category}>
-        <h1>Beer Categories</h1>
+        <h1>Detailed Catalogue</h1>
         <Spin tip="Loading..." spinning={isFetchingCategories}>
         <div className={styles.categoryContent}>
           { categories?.length ?

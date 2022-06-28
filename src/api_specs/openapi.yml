@@ -59,28 +59,23 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Product"
-
-  /products/{id}:
-    get:
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: string
-          required: true
-          description: unique id of the  product category
+    delete:
       tags:
         - products
-      summary: Gets the product information based on the id
-      description: Gets the product information
-      operationId: getProductById
+      parameters:
+        - in: query
+          name: ids
+          schema:
+            type: array
+            items:
+              type: string
+          required: true
+      summary: Deleting products based on product Ids
+      description: Deleting products based on product Ids
+      operationId: deleteProductsByIds
       responses:
         200:
-          description: Gets the product information
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Product"
+          description: OK
 components:
   schemas:
     Product:
@@ -115,7 +110,8 @@ components:
         price:
           type: number
         listed_since:
-          type: number
+          type: string
+          format: date-time
         type:
           type: number
         tags:

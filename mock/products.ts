@@ -3,14 +3,15 @@ import {Category, Product} from "@/api";
 import productData from "./dummyData.ts";
 
 
-const products:Product[] = productData.map((product)=>{
+export let products:Product[] = productData.map((product)=>{
   return{
     id: product.id,
     title: product.displayName,
     description: product.product_description,
     category: product.product_category,
+    icon: product.icon,
     image: product.contentAwareMedium,
-    rating: 4,
+    rating: 3,
     price: product.product_price,
     listedSince: product.listed_since,
     type: product.type,
@@ -125,6 +126,15 @@ export default {
     setTimeout(()=>{
       response.send(products);
     },1000);
+  },
+  'Delete /products': (request:Request, response: Response) => {
+    setTimeout(()=>{
+      products= products.filter((product)=>
+        !request.query.ids.includes(product.id)
+      );
+      response.send(200);
+    });
   }
+
 
 }

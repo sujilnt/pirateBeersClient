@@ -45,7 +45,7 @@ const categories: Category[] = [
   },
 ]
 
-describe("Tests related Products model", () => {
+describe("Tests related Categories model", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });

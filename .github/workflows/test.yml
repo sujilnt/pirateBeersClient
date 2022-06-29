@@ -1,6 +1,8 @@
 name: pirate_beers_client_tests
 on:
   pull_request
+  push:
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest

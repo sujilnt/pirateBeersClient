@@ -1,4 +1,6 @@
-# umi project
+
+# pirateBeersClient
+A pirate beers ecommerce project, build using umi.js
 
 ## Getting Started
 
@@ -13,3 +15,4 @@ Start the dev server,
 ```bash
 $ yarn start
 ```
+

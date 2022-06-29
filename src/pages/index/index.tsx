@@ -1,5 +1,4 @@
 import styles from './index.less';
-import HomePageBanners from "@/components/HomePageBanners";
 import CategoryCard from "@/components/CaterogyCard";
 import {useDispatch, useSelector, Dispatch} from 'umi';
 import {CategoryAction} from "@/pages/categories/model";
@@ -25,7 +24,6 @@ function Index(){
 
   return (
     <div className={styles.container}>
-      <HomePageBanners/>
       <div className={styles.category}>
         <h1>General Catalogue</h1>
         <Spin tip="Loading..." spinning={isFetchingCategories}>

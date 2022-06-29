@@ -120,11 +120,9 @@ components:
           type: number
         ibu:
           type: number
-        srm:
-          type: number
         price:
           type: number
-        listed_since:
+        listedSince:
           type: string
           format: date-time
         type:

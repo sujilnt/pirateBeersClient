@@ -1,6 +1,5 @@
 import React from 'react';
-import {Card, Empty, Rate} from "antd";
-import {SettingOutlined,EditOutlined,EllipsisOutlined} from "@ant-design/icons";
+import {Rate} from "antd";
 import type {Product} from "@/api";
 import styles from "./style.less";
 import {history} from "umi";

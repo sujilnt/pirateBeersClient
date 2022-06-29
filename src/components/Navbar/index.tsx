@@ -26,13 +26,9 @@ export function getLink(to: string, label: string): ReactNode {
 const routes = [
   {key: "home", label: getLink("/", "Home"), icon: <HomeOutlined className={styles.navIcon}/>},
   {
-    key: "products", label: getLink("/product", "Products"),
+    key: "products", label: getLink("/product/detailed", "Detailed Category"),
     icon: <Icon component={BeerIcon}/>,
-    children: [
-      {key: "newCollection", label: getLink("/product/detailed", "Detailed Category")},
-    ]
-  },
-  {key: "about-us", label: getLink("/about-us", "About us"), icon: <UsergroupAddOutlined className={styles.navIcon}/>}
+  }
 ];
 
 export default function () {

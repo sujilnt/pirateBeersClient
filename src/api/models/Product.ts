@@ -72,12 +72,6 @@ export interface Product {
      * @type {number}
      * @memberof Product
      */
-    srm?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Product
-     */
     price: number;
     /**
      * 
@@ -117,9 +111,8 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
         'rating': json['rating'],
         'abv': !exists(json, 'abv') ? undefined : json['abv'],
         'ibu': !exists(json, 'ibu') ? undefined : json['ibu'],
-        'srm': !exists(json, 'srm') ? undefined : json['srm'],
         'price': json['price'],
-        'listedSince': !exists(json, 'listed_since') ? undefined : (new Date(json['listed_since'])),
+        'listedSince': !exists(json, 'listedSince') ? undefined : (new Date(json['listedSince'])),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
     };
@@ -142,9 +135,8 @@ export function ProductToJSON(value?: Product | null): any {
         'rating': value.rating,
         'abv': value.abv,
         'ibu': value.ibu,
-        'srm': value.srm,
         'price': value.price,
-        'listed_since': value.listedSince === undefined ? undefined : (value.listedSince.toISOString()),
+        'listedSince': value.listedSince === undefined ? undefined : (value.listedSince.toISOString()),
         'type': value.type,
         'tags': value.tags,
     };

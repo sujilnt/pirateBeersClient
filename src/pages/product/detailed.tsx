@@ -8,6 +8,7 @@ import {Button, Table,Popconfirm} from "antd";
 import styles from "./style.less"
 import {CategoryAction} from "@/pages/categories/model";
 import {ProductInformation} from "@/components/Product";
+import moment from "moment";
 
 
 function getDispatchMethods(dispatch:Dispatch){
@@ -57,8 +58,6 @@ export default function () {
     onMount();
   },[])
 
-  console.log("productCategories", selectedProducts);
-
   const columns = [
     {
       title: 'Product Id',
@@ -93,10 +92,14 @@ export default function () {
       title: 'Listed Since',
       dataIndex: 'listedSince',
       key: 'listedSince',
-      render(listedDate, record){
-        const date =  new Date();
-
-        return date.toUTCString();
+      sorter: (record1:Product, record2:Product)=> {
+        if(record1?.listedSince && record2?.listedSince){
+          return (+record1?.listedSince) - +record2.listedSince
+        }
+        return false;
+      },
+      render(listedDate:Date){
+        return moment(listedDate).format('MMMM Do YYYY, h:mm:ss a');;
       }
     }
   ];

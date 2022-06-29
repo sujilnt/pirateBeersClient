@@ -13,7 +13,7 @@ export let products:Product[] = productData.map((product)=>{
     image: product.contentAwareMedium,
     rating: 3,
     price: product.product_price,
-    listedSince: product.listed_since,
+    listedSince: new Date(product.listed_since).toISOString(),
     type: product.product_type,
     tags: product.product_tags.split(","),
     abv: product.abv,

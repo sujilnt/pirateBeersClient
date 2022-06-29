@@ -86,6 +86,11 @@ export default {
         yield put({
           type: ProductAction.FETCH_PRODUCTS,
         });
+
+        yield put({
+          type: ProductAction.SET_SELECTED_PRODUCTS,
+          selectedProducts: undefined,
+        });
       } catch (e) {
         notification.error({
           message: 'could not delete the products',

@@ -1,15 +1,13 @@
-
-
-.categoryImage{
+.categoryImage {
   max-width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
 }
 
-.card{
+.card {
   position: relative;
 
-  & .description{
+  & .description {
     position: absolute;
     top: 0;
     left: 0;
@@ -20,30 +18,32 @@
     transition: 0.45s opacity;
   }
 
-  &:hover .description{
+  &:hover .description {
     background: rgba(255, 255, 255, 0.9);
     opacity: 1;
   }
-
 }
 
-.title{
+.title {
   text-align: center;
   text-transform: capitalize;
   font-size: 17px;
+  font-weight: 600;
+  & a {
+    color: @primary-bg-color;
+  }
 }
 
-
-.description{
+.description {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-.cardLink{
+.cardLink {
   & a {
-    margin-top:10px;
+    margin-top: 10px;
     position: relative;
     width: 50%;
     font-size: 14px;
@@ -51,16 +51,16 @@
     text-align: center;
     padding: 10px;
     cursor: pointer;
-    border: 1px solid black;
-    transition: background .7s;
+    border: 1px solid @primary-bg-color;
+    transition: background 0.7s;
   }
 
-  & a:hover{
-    background: #111111;
+  & a:hover {
+    background: @primary-bg-color;
   }
 }
 
-.overflowText{
+.overflowText {
   overflow: hidden;
   text-overflow: ellipsis;
 }

@@ -5,23 +5,31 @@ import { CategoryAction } from '@/pages/categories/model';
 import { GlobalState } from '@/service/interfaces';
 import React, { useEffect } from 'react';
 import { Category } from '@/api';
-import { Empty, Spin } from 'antd';
+import { Button, Empty, Spin } from 'antd';
 import ProductList from '@/components/ProductList';
 import { ProductAction } from '@/pages/product/model';
+import { PlusOutlined } from '@ant-design/icons';
 
 function Index() {
   const { onMount, cleanUp } = getDispatchMethods(useDispatch());
 
-  const { categories, isFetchingCategories, recommendations } = useSelector(
-    (state: GlobalState) => ({
-      isFetchingCategories:
-        state.loading.effects[
-          `productCategory/${CategoryAction.FETCH_PRODUCT_CATEGORIES}`
-        ],
-      categories: state.productCategory.productCategories,
-      recommendations: state.products.recommendations,
-    }),
-  );
+  const {
+    categories,
+    isFetchingCategories,
+    recommendations,
+    isFetchingRecommendations,
+  } = useSelector((state: GlobalState) => ({
+    isFetchingCategories:
+      state.loading.effects[
+        `productCategory/${CategoryAction.FETCH_PRODUCT_CATEGORIES}`
+      ],
+    isFetchingRecommendations:
+      state.loading.effects[
+        `products/${ProductAction.FETCH_PRODUCT_RECOMMENDATIONS}`
+      ],
+    categories: state.productCategory.productCategories,
+    recommendations: state.products.recommendations,
+  }));
 
   useEffect(() => {
     onMount();
@@ -32,7 +40,12 @@ function Index() {
   return (
     <div className={styles.container}>
       <div className={styles.category}>
-        <h2>General Catalogue</h2>
+        <h2>
+          General Catalogue
+          <Button icon={<PlusOutlined />} className={styles.addProductButton}>
+            Add product
+          </Button>
+        </h2>
         <Spin tip="Loading..." spinning={isFetchingCategories}>
           <div className={styles.categoryContent}>
             {categories?.length
@@ -46,7 +59,9 @@ function Index() {
       <div className={styles.recommendationsContainer}>
         <h2>Recommended Products</h2>
         {!!recommendations && recommendations?.length ? (
-          <ProductList products={recommendations} />
+          <Spin spinning={isFetchingRecommendations}>
+            <ProductList products={recommendations} />
+          </Spin>
         ) : (
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         )}

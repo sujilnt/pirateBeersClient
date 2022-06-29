@@ -4,6 +4,22 @@ info:
   description: A ecommerce app that sells beers
   version: 1.0.0
 paths:
+  /products/recommendations:
+    get:
+      tags:
+        - products
+      summary: Get product recommendations from diffrent users
+      description: Get product recommendations from diffrent users
+      operationId: getProductRecommendations
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
   /products/categories/{id}:
      get:
       parameters:

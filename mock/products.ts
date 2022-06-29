@@ -195,6 +195,16 @@ const categories: Category[] = [
 ];
 
 export default {
+  'GET /products/recommendations': (request: Request, response: Response) => {
+    const sortedProductsBasedOnRatings = products.sort(
+      (p1, p2) => p2.rating - p1.rating,
+    );
+    setTimeout(() => {
+      response.send(
+        sortedProductsBasedOnRatings.filter((_p, index) => index <= 9),
+      );
+    }, 1000);
+  },
   'GET /products/categories/:id': (request: Request, response: Response) => {
     const id = request.url.split('/categories/')[1];
     setTimeout(() => {

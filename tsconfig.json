@@ -17,9 +17,7 @@
     },
     "allowSyntheticDefaultImports": true
   },
-  "types": [
-    "jest"
-  ],
+  "types": ["jest", "express"],
   "include": [
     "mock/**/*",
     "src/**/*",

@@ -167,7 +167,7 @@ export default {
     const id = request.url.split("/categories/")[1];
     setTimeout(()=>{
       response.send(categories.filter((category)=> category.id=== id));
-    },1000);
+    },500);
   },
   'GET /products/categories': (request: Request, response: Response) => {
     setTimeout(() => {

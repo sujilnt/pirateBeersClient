@@ -27,8 +27,9 @@ export default function({products}: ProductListProps){
               <img src={product.image} className={styles.cardImage}/>
             </div>
             <div className={styles.cardLabel}>
-              <div className={styles.title}>{product.title}</div>
               <Rate disabled defaultValue={product.rating} />
+              <div className={styles.title}>{product.title}</div>
+              <div className={styles.title}>£ {product.price}</div>
             </div>
           </div>
         )

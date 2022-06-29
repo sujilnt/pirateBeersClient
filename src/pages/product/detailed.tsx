@@ -9,6 +9,7 @@ import styles from "./style.less"
 import {CategoryAction} from "@/pages/categories/model";
 import {ProductInformation} from "@/components/Product";
 import moment from "moment";
+import {ColumnsType} from "antd/lib/table/interface";
 
 
 function getDispatchMethods(dispatch:Dispatch){
@@ -58,7 +59,7 @@ export default function () {
     onMount();
   },[])
 
-  const columns = [
+  const columns:ColumnsType<Product> = [
     {
       title: 'Product Id',
       dataIndex: 'id',
@@ -73,7 +74,7 @@ export default function () {
       title: 'Category',
       dataIndex: 'category',
       key: 'category',
-      onFilter(value:string, record:Product){
+      onFilter(value, record:Product){
         return record.category === value;
       },
       filterSearch: true,
@@ -87,7 +88,7 @@ export default function () {
       title: 'Price (£)',
       dataIndex: 'price',
       key: 'price',
-      sorter: (record1:Product, record2:Product)=> record1.price < record2.price
+      sorter: (record1:Product, record2:Product)=> record1.price - record2.price
     },{
       title: 'Listed Since',
       dataIndex: 'listedSince',
@@ -96,10 +97,10 @@ export default function () {
         if(record1?.listedSince && record2?.listedSince){
           return (+record1?.listedSince) - +record2.listedSince
         }
-        return false;
+        return 0;
       },
       render(listedDate:Date){
-        return moment(listedDate).format('MMMM Do YYYY, h:mm:ss a');;
+        return moment(listedDate).format('MMMM Do YYYY, h:mm:ss');;
       }
     }
   ];
@@ -113,12 +114,12 @@ export default function () {
           okText="Yes"
           cancelText="No"
           placement="bottom"
-          loading={isDeletingProducts}
           disabled={!selectedProducts || selectedProducts?.length==0}
         >
           <Button
-            type="danger"
+            danger
             className={styles.deleteButton}
+            loading={isDeletingProducts}
             disabled={!selectedProducts || selectedProducts?.length===0}
           >
             Delete

@@ -2,8 +2,7 @@ import "jest";
 import api from "@/service/api";
 import model, {ProductAction} from "../model";
 import {setup} from "@/test/helper";
-import {Category, Product} from "../../../api";
-import {notification} from "antd";
+import {Product} from "../../../api";
 
 
 jest.mock("@/service/api");
@@ -17,7 +16,7 @@ const products: Product[] = [
     "image": "https://brewerydb-images.s3.amazonaws.com/beer/FceO5R/upload_fJsFzS-contentAwareMedium.png",
     "rating": 4,
     "price": 5.4,
-    "listedSince": "20/02/2020",
+    "listedSince": new Date("02-02-2022"),
     "tags": ["Crisp & Clean", " Malty & Sweet"],
     "abv": 5.2,
     "ibu": 31
@@ -29,7 +28,7 @@ const products: Product[] = [
     "image": "https://brewerydb-images.s3.amazonaws.com/beer/NUGX0p/upload_oTdx0D-contentAwareMedium.png",
     "rating": 4,
     "price": 6.2,
-    "listedSince": "21/02/2020",
+    "listedSince": new Date("02-02-2022"),
     "tags": ["Crisp & Clean", " Malty & Sweet"],
     "abv": 4.5,
     "ibu": 25

@@ -10,7 +10,8 @@ export enum ProductAction {
   FETCH_PRODUCTS = "FETCH_PRODUCTS",
   SET_PRODUCTS = "SET_PRODUCTS",
   SET_SELECTED_PRODUCTS = "SET_SELECTED_PRODUCTS",
-  DELETE_PRODUCTS = "DELETE_PRODUCTS"
+  DELETE_PRODUCTS = "DELETE_PRODUCTS",
+  ADD_PRODUCT = "ADD_PRODUCT"
 }
 export interface ProductState{
  products?: Product[];
@@ -62,6 +63,17 @@ export default {
         notification.error({
           message: "could not delete the products"
         })
+      }
+    },
+    *[ProductAction.ADD_PRODUCT]({product}: {product:Product}, {put,call,select}:{put:Put, call:Function, select:Function}){
+      try {
+        yield call(()=>api.products.addProduct({
+            product
+        }));
+      }catch (e) {
+        notification.error({
+          message: "could not add products"
+        });
       }
     }
   }

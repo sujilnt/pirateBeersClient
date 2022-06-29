@@ -1,4 +1,4 @@
-import type {Request, Response} from 'express';
+import type {Request, Response,NextFunction} from 'express';
 import {Category, Product} from "@/api";
 import productData from "./dummyData.ts";
 
@@ -14,7 +14,7 @@ export let products:Product[] = productData.map((product)=>{
     rating: 3,
     price: product.product_price,
     listedSince: product.listed_since,
-    type: product.type,
+    type: product.product_type,
     tags: product.product_tags.split(","),
     abv: product.abv,
     ibu: product.ibu,
@@ -24,6 +24,7 @@ export let products:Product[] = productData.map((product)=>{
 
 
 
+const productsLength = products.length;
 
 const categories: Category[] = [{
   title: "Ale",
@@ -40,6 +41,18 @@ const categories: Category[] = [{
   srm:{ min:4, max:10 },
   // in degree celsius
   servingTemperature:{ min:4, max:7 },
+  averagePrice: products.reduce((acc, product,index)=>{
+    if(product.category==="wheat_ale"){
+      return acc + product.price
+    }
+
+    // calculate average
+    if(productsLength-1 === index){
+      return acc/ products.filter((product)=>product.category === "wheat_ale").length;
+    }
+    return acc;
+  },0),
+  totalBeers: products.filter((product)=>product.category === "wheat_ale").length
 },
   {
     title: "Pilsener",
@@ -56,6 +69,18 @@ const categories: Category[] = [{
     ibu:{ min: 17 , max: 30 },
     srm:{ min:3, max:6 },
     servingTemperature:{ min:4, max:7 },
+    averagePrice: products.reduce((acc, product,index)=>{
+      if(product.category==="pilsener"){
+        return acc + product.price
+      }
+
+      // calculate average
+      if(productsLength-1 === index){
+        return acc/ products.filter((product)=>product.category === "pilsener").length;
+      }
+      return acc;
+    },0),
+    totalBeers: products.filter((product)=>product.category === "pilsener").length
   },
   {
    title: "Stout",
@@ -70,6 +95,18 @@ const categories: Category[] = [{
     ibu:{ min: 15 , max: 60 },
     srm:{ min:20, max:40 },
     servingTemperature:{ min:4, max:7 },
+    averagePrice: products.reduce((acc, product,index)=>{
+      if(product.category==="stout"){
+        return acc + product.price
+      }
+
+      // calculating average
+      if(productsLength-1 === index){
+        return acc/ products.filter((product)=>product.category === "stout").length;
+      }
+      return acc;
+    },0),
+    totalBeers: products.filter((product)=>product.category === "stout").length
   },
   {
    title: "Lager",
@@ -82,6 +119,18 @@ const categories: Category[] = [{
     abv:{ min: 3.5 , max: 60 },
     srm:{ min:20, max:40 },
     servingTemperature:{ min:8, max:12 },
+    averagePrice: products.reduce((acc, product,index)=>{
+      if(product.category==="lager"){
+        return acc + product.price
+      }
+
+      // calculating average
+      if(productsLength-1 === index){
+        return acc/ products.filter((product)=>product.category === "lager").length;
+      }
+      return acc;
+    },0),
+    totalBeers: products.filter((product)=>product.category === "lager").length
   },
   {
     title: "Porter",
@@ -97,6 +146,18 @@ const categories: Category[] = [{
     abv:{ min: 3.5 , max: 60 },
     srm:{ min:20, max:40 },
     servingTemperature:{ min:8, max:12 },
+    averagePrice: products.reduce((acc, product,index)=>{
+      if(product.category==="porter"){
+        return acc + product.price
+      }
+
+      // calculating average
+      if(productsLength-1 === index){
+        return acc/ products.filter((product)=>product.category === "porter").length;
+      }
+      return acc;
+    },0),
+    totalBeers: products.filter((product)=>product.category === "porter").length
   }];
 
 
@@ -132,8 +193,8 @@ export default {
       products= products.filter((product)=>
         !request.query.ids.includes(product.id)
       );
-      response.send(200);
-    });
+      response.sendStatus(200);
+    },1000);
   }
 
 

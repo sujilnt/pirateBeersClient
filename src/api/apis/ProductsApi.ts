@@ -23,6 +23,10 @@ import {
     ProductToJSON,
 } from '../models';
 
+export interface AddProductRequest {
+    product?: Product;
+}
+
 export interface DeleteProductsByIdsRequest {
     ids: Array<string>;
 }
@@ -35,6 +39,36 @@ export interface GetCategoryByIdRequest {
  * 
  */
 export class ProductsApi extends runtime.BaseAPI {
+
+    /**
+     * Adding a product to a particular category
+     * Adding a product to a particular category
+     */
+    async addProductRaw(requestParameters: AddProductRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/product`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ProductToJSON(requestParameters.product),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Adding a product to a particular category
+     * Adding a product to a particular category
+     */
+    async addProduct(requestParameters: AddProductRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<void> {
+        await this.addProductRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Deleting products based on product Ids

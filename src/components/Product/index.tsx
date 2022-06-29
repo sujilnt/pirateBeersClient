@@ -28,6 +28,7 @@ export function ProductInformation({product}:ProductInformationProps ){
       </div>
       <div className={styles.productInfoTableContainer}>
         <h3>Detailed Product Information</h3>
+        <h4>{product.title}</h4>
         <Rate disabled defaultValue={product.rating} allowHalf/>
         <h2>£{product.price}</h2>
 
@@ -38,7 +39,7 @@ export function ProductInformation({product}:ProductInformationProps ){
         <div>
           <h4>Tags</h4>
           <div>
-            {product.tags}
+            {product.tags?.join(",")}
           </div>
         </div>
       </div>

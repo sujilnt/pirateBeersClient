@@ -80,6 +80,18 @@ export interface Category {
      * @memberof Category
      */
     servingTemperature: Range;
+    /**
+     * 
+     * @type {number}
+     * @memberof Category
+     */
+    averagePrice: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Category
+     */
+    totalBeers: number;
 }
 
 export function CategoryFromJSON(json: any): Category {
@@ -101,6 +113,8 @@ export function CategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'ibu': RangeFromJSON(json['ibu']),
         'srm': RangeFromJSON(json['srm']),
         'servingTemperature': RangeFromJSON(json['servingTemperature']),
+        'averagePrice': json['averagePrice'],
+        'totalBeers': json['totalBeers'],
     };
 }
 
@@ -122,6 +136,8 @@ export function CategoryToJSON(value?: Category | null): any {
         'ibu': RangeToJSON(value.ibu),
         'srm': RangeToJSON(value.srm),
         'servingTemperature': RangeToJSON(value.servingTemperature),
+        'averagePrice': value.averagePrice,
+        'totalBeers': value.totalBeers,
     };
 }
 

@@ -43,6 +43,21 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Category"
+  /product:
+    post:
+      tags:
+        - products
+      summary: Adding a product to a particular category
+      description: Adding a product to a particular category
+      operationId: addProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        200:
+          description: Added product succefully
   /products:
     get:
       tags:
@@ -142,6 +157,8 @@ components:
         - ibu
         - srm
         - servingTemperature
+        - averagePrice
+        - totalBeers
       properties:
         id:
           type: string
@@ -161,4 +178,8 @@ components:
           $ref: "#/components/schemas/Range"
         servingTemperature:
           $ref: "#/components/schemas/Range"
+        averagePrice:
+          type: number
+        totalBeers:
+          type: number
 

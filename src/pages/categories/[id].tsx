@@ -115,6 +115,16 @@ function BeerCategory() {
               <div className={styles.descriptionContainer}>
                 <h1>{category?.title}</h1>
                 <h2>{category?.description}</h2>
+                <div className={styles.price}>
+                  <div className={styles.section}>
+                    <h1>Average price</h1>
+                    <div>£ {Math.round(category.averagePrice)} </div>
+                  </div>
+                  <div className={styles.section}>
+                    <h1>total Beers</h1>
+                    <div>{category.totalBeers}</div>
+                  </div>
+                </div>
                 <div className={styles.measurements}>
                   <h1>Measurements</h1>
                   <div className={styles.sliderContainer}>

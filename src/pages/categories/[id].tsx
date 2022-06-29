@@ -13,6 +13,7 @@ import ProductList from "@/components/ProductList";
 
 interface BeerCategoryProps extends CategoryState{
   isFetchingCategories: boolean;
+  products?: Product[]
 }
 
 const CategoryBeerPropertiesExplanations = {

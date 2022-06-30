@@ -1,6 +1,6 @@
 import styles from './index.less';
 import CategoryCard from '@/components/CaterogyCard';
-import { useDispatch, useSelector, Dispatch } from 'umi';
+import { useDispatch, useSelector, Dispatch, history } from 'umi';
 import { CategoryAction } from '@/pages/categories/model';
 import { GlobalState } from '@/service/interfaces';
 import React, { useEffect } from 'react';
@@ -42,7 +42,13 @@ function Index() {
       <div className={styles.category}>
         <h2>
           General Catalogue
-          <Button icon={<PlusOutlined />} className={styles.addProductButton}>
+          <Button
+            icon={<PlusOutlined />}
+            className={styles.addProductButton}
+            onClick={() => {
+              history.push('/product/add');
+            }}
+          >
             Add product
           </Button>
         </h2>

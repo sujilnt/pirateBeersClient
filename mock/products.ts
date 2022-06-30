@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { Category, Product } from '@/api';
+import { v4 } from 'uuid';
 // @ts-ignore general dummy file to the products
 import productData from './dummyData.ts';
 
@@ -225,6 +226,12 @@ export default {
           return product.id === id;
         }),
       );
+    }, 1000);
+  },
+  'POST /product': (request: Request, response: Response) => {
+    products.push({ id: v4(), ...request.body });
+    setTimeout(() => {
+      response.sendStatus(200);
     }, 1000);
   },
   'GET /products': (request: Request, response: Response) => {

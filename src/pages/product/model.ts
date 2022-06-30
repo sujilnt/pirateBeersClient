@@ -14,17 +14,28 @@ export enum ProductAction {
   ADD_PRODUCT = 'ADD_PRODUCT',
   FETCH_PRODUCT_RECOMMENDATIONS = 'FETCH_PRODUCT_RECOMMENDATIONS',
   SET_PRODUCT_RECOMMENDATIONS = 'SET_PRODUCT_RECOMMENDATIONS',
+  SET_PRODUCT_FIELDS = 'SET_PRODUCT_FIELDS',
 }
 export interface ProductState {
   products?: Product[];
   selectedProducts: Key[];
   recommendations: Product[];
+  productFields: any[];
 }
 
 const initialState = {
   products: undefined,
   selectedProducts: undefined,
   recommendations: undefined,
+  productFields: [
+    { name: ['title'], value: undefined },
+    { name: ['image'], value: undefined },
+    { name: ['category'], value: undefined },
+    { name: ['type'], value: undefined },
+    { name: ['price'], value: undefined },
+    { name: ['tags'], value: undefined },
+    { name: ['description'], value: undefined },
+  ],
 };
 
 export default {
@@ -48,6 +59,12 @@ export default {
       { recommendations }: { recommendations: Product[] },
     ) {
       state.recommendations = recommendations;
+    },
+    [ProductAction.SET_PRODUCT_FIELDS](
+      state: ProductState,
+      { productFields }: { productFields: Product[] },
+    ) {
+      state.productFields = productFields;
     },
   },
   effects: {
@@ -107,6 +124,14 @@ export default {
             product,
           }),
         );
+        notification.success({
+          message: 'product added successfully',
+        });
+
+        yield put({
+          type: `${ProductAction.SET_PRODUCT_FIELDS}`,
+          productFields: initialState.productFields,
+        });
 
         yield put({ type: ProductAction.FETCH_PRODUCTS });
       } catch (e) {
